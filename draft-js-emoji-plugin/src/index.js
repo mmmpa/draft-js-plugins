@@ -103,7 +103,7 @@ const createEmojiPlugin = (config = {}) => {
   const cacheBustParam = allowImageCache ? '' : defaultCacheBustParam;
 
   // if priorityList is configured in config then set priorityList
-  if (priorityList) emojiList.setPriorityList(priorityList);
+  if (priorityList) emojiList.setPriorityList(priorityList, config.ignoreEmojiRegex);
   const emojiSearchProps = {
     ariaProps,
     cacheBustParam,

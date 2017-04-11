@@ -12,11 +12,18 @@ const newEmojiListWithOutPriorityList = (priorityList) => {
   return { ...priorityList, ...list };
 };
 
+const ignoreWithRegex = (emojiList, regex) => (
+  Object.keys(emojiList)
+    .filter((key) => !regex.test(key))
+    .reduce((ret, key) => ({ ...ret, [key]: emojiList[key] }), {})
+);
+
 const emojiList = {};
 
-emojiList.setPriorityList = (newPriorityList) => {
+emojiList.setPriorityList = (newPriorityList, ignoreRegex) => {
   // re-generate emojiList when set PriorityList
-  emojiList.list = newEmojiListWithOutPriorityList(newPriorityList);
+  const l = newEmojiListWithOutPriorityList(newPriorityList);
+  emojiList.list = ignoreRegex ? ignoreWithRegex(l, ignoreRegex) : l;
 };
 
 // init emojiList
