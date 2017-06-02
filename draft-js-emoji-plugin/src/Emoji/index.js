@@ -21,7 +21,7 @@ const Emoji = ({ theme = {}, cacheBustParam, imagePath, imageType, className, de
       title={emojione.toShort(decoratedText)}
       style={{ backgroundImage }}
     >
-      {props.children}
+      <span style={{ opacity: 0 }}>{props.children}</span>
     </span>
   );
 };
